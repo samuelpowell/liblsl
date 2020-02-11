@@ -23,6 +23,10 @@ add_executable(lsl_test_internal
 )
 target_link_libraries(lsl_test_internal PRIVATE lslobj lslboost catch_main)
 
+if( MINGW )
+	target_link_libraries(lsl_test_internal PUBLIC winm)
+endif()
+
 set(LSL_TESTS lsl_test_exported lsl_test_internal)
 foreach(lsltest ${LSL_TESTS})
 	add_test(NAME ${lsltest} COMMAND ${lsltest})
